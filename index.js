@@ -1,12 +1,21 @@
-import express from "express";
-import nodersa from "node-rsa";
-import fs from "fs";
-import multer from "multer";
+const multer = require("multer");
+const fs = require("fs");
+const nodersa = require("node-rsa");
+const express = require("express");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(express.json());
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname);
+  },
+});
 
 var upload = multer({ storage: storage });
 
