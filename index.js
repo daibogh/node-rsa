@@ -3,6 +3,7 @@ const fs = require("fs");
 const nodersa = require("node-rsa");
 const express = require("express");
 const serveStatic = require("serve-static");
+const path = require("path");
 const PORT = process.env.PORT || 5000;
 const app = express();
 // const __dirname = path.resolve();
