@@ -1,10 +1,6 @@
-const multer = require("multer");
-const fs = require("fs");
-const nodersa = require("node-rsa");
-const express = require("express");
-
 const PORT = process.env.PORT || 5000;
 const app = express();
+// const __dirname = path.resolve();
 
 app.use(express.json());
 
@@ -19,8 +15,14 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage });
 
+app.use("/", serveStatic(path.join(__dirname, "/public")));
+
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/index.html"));
+});
+
 app.post(
-  "/",
+  "/decrypt",
   upload.fields([
     {
       name: "secret",
