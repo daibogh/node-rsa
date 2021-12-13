@@ -26,9 +26,9 @@ app.use("/", serveStatic(path.join(__dirname, "/public")));
 app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "/public/index.html"));
 });
-
+app.get('/login', (req,res) => res.send('drevo'))
 app.post(
-  "/decrypt",
+  "/decypher",
   upload.fields([
     {
       name: "secret",
